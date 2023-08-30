@@ -7,12 +7,13 @@ import Layout from './components/Layout.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import HomePage from './pages/HomePage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path='/' element={<Layout />} errorElement={<ErrorPage />} >
-
+        <Route path='/' element={<HomePage />} />
       </Route>
     </>
   )
