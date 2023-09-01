@@ -37,7 +37,7 @@
 }
 
 .table-purple {
-  background-color: #9254DE !important;
+  background: #9254DE !important;
   color: #fff !important;
   border-color: #9254DE !important;
 }
@@ -45,4 +45,9 @@
 .layer {
   border-radius: 8px;
   background: linear-gradient(180deg, #51557E 0%, rgba(81, 85, 126, 0.00) 100%);
+}
+
+.layer-dark {
+  border-radius: 8px;
+  background: #1B2430;
 }
