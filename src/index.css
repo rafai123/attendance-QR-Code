@@ -1,6 +1,8 @@
 :root {
   background-color: #1B2430;
+  /* background-color: #0E1D35; */
   height: 100vh;
+  color: #fff;
 }
 
 .btn-purple {
@@ -38,4 +40,9 @@
   background-color: #9254DE !important;
   color: #fff !important;
   border-color: #9254DE !important;
+}
+
+.layer {
+  border-radius: 8px;
+  background: linear-gradient(180deg, #51557E 0%, rgba(81, 85, 126, 0.00) 100%);
 }

@@ -13,7 +13,7 @@ const RegisterPage = () => {
                         <form>
                             <div class="mb-3">
                                 <label for="name-register" class="form-label">Name</label>
-                                <input type="email" class="form-control" id="name-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan nama anda"  />
+                                <input type="text" class="form-control" id="name-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan nama anda"  />
                             </div>
                             <div class="mb-3">
                                 <label for="email-register" class="form-label">Email address</label>
