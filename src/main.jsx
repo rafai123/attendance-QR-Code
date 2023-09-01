@@ -6,11 +6,15 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Layout from './components/Layout.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomePage from './pages/HomePage.jsx'
 import NotLoginPage from './pages/NotLoginPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
+import StudentListPage from './pages/StudentListPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +24,7 @@ const router = createBrowserRouter(
         <Route path='/not-login' element={<NotLoginPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path='/register' element={<RegisterPage />} />
+        <Route path='/student-list' element={<StudentListPage />} />
       </Route>
     </>
   )

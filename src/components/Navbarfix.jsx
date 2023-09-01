@@ -16,7 +16,7 @@ const NavbarFix = () => {
           <Nav className="ms-auto gap-2 text-center"  >
             <NavLink to="/" className="nav-link">Home</NavLink>           
             <NavLink to="/scan" className="nav-link">Scan</NavLink>           
-            <NavLink to="/daftar-mahasiswa" className="nav-link">Daftar Mahasiswa</NavLink>           
+            <NavLink to="/student-list" className="nav-link">Daftar Mahasiswa</NavLink>           
           </Nav>
           <Nav className="ms-auto my-1 gap-2 ">
             <Link to="/register" class="btn btn-outline-light px-5 my-1">
