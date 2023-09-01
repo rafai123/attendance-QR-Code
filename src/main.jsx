@@ -9,6 +9,7 @@ import ErrorPage from './pages/ErrorPage.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import HomePage from './pages/HomePage.jsx'
 import NotLoginPage from './pages/NotLoginPage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
       <Route path='/' element={<Layout />} errorElement={<ErrorPage />} >
         <Route path='/' element={<HomePage />} />
         <Route path='/not-login' element={<NotLoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
       </Route>
     </>
   )
