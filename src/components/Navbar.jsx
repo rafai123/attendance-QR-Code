@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./../index.css";
 
 const Navbar = () => {
@@ -31,10 +31,10 @@ const Navbar = () => {
               </li>
             </ul>
             <form class="d-flex" role="search">
-              <Link to="/register" class="btn btn-outline-light px-5 me-2">
+              <NavLink to={"/register"} class="btn btn-outline-light px-5 me-2">
                 Daftar
-              </Link>
-              <Link to="/login" class="btn btn-purple px-5">
+              </NavLink>
+              <Link to={"/login"} class="btn btn-purple px-5">
                 Login
               </Link>
             </form>

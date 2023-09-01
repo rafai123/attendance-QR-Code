@@ -19,10 +19,10 @@ const NavbarFix = () => {
             <NavLink to="/daftar-mahasiswa" className="nav-link">Daftar Mahasiswa</NavLink>           
           </Nav>
           <Nav className="ms-auto my-1 gap-2 ">
-            <Link to="/" class="btn btn-outline-light px-5 my-1">
+            <Link to="/register" class="btn btn-outline-light px-5 my-1">
                 Daftar
             </Link>
-            <Link to="/" class="btn btn-purple px-5 my-1">
+            <Link to="/login" class="btn btn-purple px-5 my-1">
                 Login
             </Link>
           </Nav>
