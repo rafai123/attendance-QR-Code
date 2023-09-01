@@ -9,15 +9,15 @@ const LoginPage = () => {
                 <div className="row text-white">
                     <div className="col-md-6 d-flex flex-column  justify-content-center  " style={{minHeight: "80vh"}}>
                         <h1>Selamat Datang Di Absensi STIKOM</h1>
-                        <p>Silahkan login dengan akun anda untuk melanjutkan!</p>
+                        <p className="lead">Silahkan login dengan akun anda untuk melanjutkan!</p>
                         <form>
-                            <div class="mb-2">
-                                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                            <div class="mb-3">
+                                <label for="email-login" class="form-label">Email address</label>
+                                <input type="email" class="form-control" id="email-login" aria-describedby="emailHelp" placeholder="Masukkan email anda" />
                             </div>
-                            <div class="mb-2">
-                                <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"/>
+                            <div class="mb-3">
+                                <label for="password-login" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password-login" placeholder="Masukkan password anda" />
                             </div>
                             <div class="mb-3">
                                 <p>Belum punya akun? silahkan <Link to="/register" className="fw-bold text-purple-500">Register </Link> dulu yuk! </p>
