@@ -10,12 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "aos": "^3.0.0-beta.6",
     "bootstrap": "^5.3.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
+    "react-qr-code": "^2.0.12",
     "react-router-dom": "^6.15.0",
     "sort-by": "^1.2.0"
   },

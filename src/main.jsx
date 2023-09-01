@@ -6,13 +6,29 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } 
 import Layout from './components/Layout.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
+import HomePage from './pages/HomePage.jsx'
+import NotLoginPage from './pages/NotLoginPage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
+import RegisterPage from './pages/RegisterPage.jsx'
+import StudentListPage from './pages/StudentListPage.jsx'
+import AddStudentPage from './pages/AddStudentPage.jsx'
+import QRGeneratorPage from './pages/QRGeneratorPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path='/' element={<Layout />} errorElement={<ErrorPage />} >
-
+        <Route path='/' element={<HomePage />} />
+        <Route path='/not-login' element={<NotLoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
+        <Route path='/student-list' element={<StudentListPage />} />
+        <Route path='/student-list/add-student' element={<AddStudentPage />} />
+        <Route path="/student-list/qr/:id" element={<QRGeneratorPage />} />
       </Route>
     </>
   )
