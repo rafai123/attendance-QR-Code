@@ -16,6 +16,7 @@ import LoginPage from './pages/LoginPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import StudentListPage from './pages/StudentListPage.jsx'
 import AddStudentPage from './pages/AddStudentPage.jsx'
+import QRGeneratorPage from './pages/QRGeneratorPage.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/student-list' element={<StudentListPage />} />
         <Route path='/student-list/add-student' element={<AddStudentPage />} />
+        <Route path="/student-list/qr/:id" element={<QRGeneratorPage />} />
       </Route>
     </>
   )

@@ -1,7 +1,16 @@
+import { useEffect, useState } from "react"
 import { Container } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 const StudentListPage =() => {
+    const [students, setStudents] = useState([])
+    useEffect(() => {
+        fetch("https://64f2052d0e1e60602d24967d.mockapi.io/students")
+        .then((response) => response.json())
+        .then((result) => {
+            setStudents(result)
+        })
+    }, [students])
     return (
         <>
             <Container>
@@ -26,23 +35,17 @@ const StudentListPage =() => {
                                 </tr>
                             </thead>
                             <tbody className="table-purple">
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
+                                {students.map((student) => {
+                                    return (
+                                        <tr key={student.id}>
+                                            <th scope="row">{student.nim}</th>
+                                            <td>{student.nama}</td>
+                                            <td>{student.kelas}</td>
+                                            <td><Link to={`./qr/${student.id}`} className="btn btn-purple">Cetak QR</Link></td>
+                                        </tr>
+                                    )
+                                })
+                                }
                             </tbody>
                         </table>
                     </div>
