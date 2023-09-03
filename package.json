@@ -19,7 +19,8 @@
     "react-dom": "^18.2.0",
     "react-qr-code": "^2.0.12",
     "react-router-dom": "^6.15.0",
-    "sort-by": "^1.2.0"
+    "sort-by": "^1.2.0",
+    "sweetalert2": "^11.7.27"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
