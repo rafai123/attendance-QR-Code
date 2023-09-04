@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react"
 import { Container } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const StudentListPage =() => {
+
+    const isLoggedIn = JSON.parse(localStorage.getItem("login")); // // true or false
+    
+    if (!isLoggedIn) {
+        const navigate = useNavigate()
+        navigate("/not-login")
+    }
+
     const [students, setStudents] = useState([])
+
     useEffect(() => {
         fetch("https://64f2052d0e1e60602d24967d.mockapi.io/students")
         .then((response) => response.json())
@@ -11,6 +20,7 @@ const StudentListPage =() => {
             setStudents(result)
         })
     }, [students])
+
     return (
         <>
             <Container>

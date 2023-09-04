@@ -22,31 +22,33 @@ const NavbarFix = () => {
   if (isLoggedIn) {
     component = (
       <>
-        <div className="text-center">
-          <Dropdown>
-            <Dropdown.Toggle id="dropdown-basic" className="btn btn-purple">{isLoggedIn.nama}</Dropdown.Toggle>
+        <Nav className="ms-auto my-1 gap-2 ">
+          <div className="text-center">
+            <Dropdown>
+              <Dropdown.Toggle id="dropdown-basic" className="btn btn-purple">{isLoggedIn.nama}</Dropdown.Toggle>
 
-            <Dropdown.Menu>
-              <div className="text-center mx-4 my-2">
-                <img
-                  height={120}
-                  className="text-center justify-center rounded"
-                  src={isLoggedIn.avatar} 
-                />
+              <Dropdown.Menu className="bg-dark text-white shadow ">
+                <div className="text-center mx-4 my-2">
+                  <img
+                    height={120}
+                    className="text-center mb-2 justify-center rounded"
+                    src={isLoggedIn.avatar} 
+                  />
 
-                <h5 className="ms-auto text-center">{isLoggedIn.nama}</h5>
+                  <h5 className="ms-auto text-center">{isLoggedIn.nama}</h5>
 
-                <Button
-                  onClick={handleLogout}
-                  // onClick={window.localStorage.clear()}
-                  className="logindong text-white text-carevul border-carevul py-2 btn btn-purple mt-3"
-                >
-                  Logout
-                </Button>
-              </div>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
+                  <Button
+                    onClick={handleLogout}
+                    // onClick={window.localStorage.clear()}
+                    className="logindong text-white text-carevul border-carevul py-2 btn btn-purple mt-1"
+                  >
+                    Logout
+                  </Button>
+                </div>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+        </Nav>
       </>
     )
   } else {
@@ -87,7 +89,7 @@ const NavbarFix = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto gap-2 text-center"  >
             <NavLink to="/" className="nav-link">Home</NavLink>           
-            <NavLink to="/scan" className="nav-link">Scan</NavLink>           
+            <NavLink to="/attendance-room-list" className="nav-link">Scan</NavLink>           
             <NavLink to="/student-list" className="nav-link">Daftar Mahasiswa</NavLink>           
           </Nav>
           {component}
