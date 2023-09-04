@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import { Container } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 
@@ -5,10 +6,21 @@ const RoomListPage = () => {
 
     const isLoggedIn = localStorage.getItem("login")
 
-    // if (!isLoggedIn) {
-    //     const navigate = useNavigate()
-    //     navigate("/not-login")
-    // }
+    if (!isLoggedIn) {
+        const navigate = useNavigate()
+        navigate("/not-login")
+    }
+
+    // const navigate = useNavigate()
+    const [room, setRoom] = useState([])
+
+    useEffect(() => {
+        fetch("https://64f4896b932537f4051a72e1.mockapi.io/rooms")
+            .then((response) => response.json())
+            .then((result) => {
+                setRoom(result)
+            })
+    }, [])
 
     const dataLogin = JSON.parse(isLoggedIn)
     console.log(dataLogin.nama)
@@ -51,6 +63,32 @@ const RoomListPage = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className="row text-white mt-5">
+
+                {room.map((item, index) => (
+                    <div className="col-md layer pb-3 m-2 justify-content-md-between" key={index}>
+                        <Link to={`/attendance-room-list/${item.idRoom}`} style={{textDecoration: "none"}}  key={index}>
+                        <Container className="text-white">
+                            <div className="row">
+                                <div className="col-md-12 p-3">
+                                    <h5 className="fw-bold">{item.name_room}</h5>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md px-3">
+                                    <p>Kelas <br />
+                                    <span className="lead"> {item.kelas}</span></p>
+                                </div>
+                                <div className="col-md px-3">
+                                    <p>Jam Mulai <br />
+                                    <span className="lead"> {item.jam_masuk} WIB</span></p>
+                                </div>
+                            </div>
+                        </Container>
+                    </Link>
+                    </div>
+                ))}
                 </div>
             </Container>
         </>
