@@ -146,7 +146,7 @@ const ScanRoomPage = () => {
                                                             .then((result) => {
                                                                 console.log(result)
                                                                 // reload this page
-                                                                window.location.reload()
+                                                                // window.location.reload()
                                                                 navigate("/attendance-room-list/"+params.id)
                                                             })
                                                         }, 5000)
