@@ -64,15 +64,15 @@ const RegisterPage = () => {
                         <p className="lead">Kamu belum daftar? Daftar yuk!</p>
                         <form onSubmit={handleSubmitRegister}>
                             <div className="mb-3">
-                                <label for="name-register" className="form-label">Name</label>
+                                <label htmlFor="name-register" className="form-label">Name</label>
                                 <input value={name} onChange={e => setName(e.target.value)} type="text" className="form-control" id="name-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan nama anda"  />
                             </div>
                             <div className="mb-3">
-                                <label for="email-register" className="form-label">Email address</label>
+                                <label htmlFor="email-register" className="form-label">Email address</label>
                                 <input value={email} onChange={e => setEmail(e.target.value)} type="email" className="form-control" id="email-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan email anda" />
                             </div>
                             <div className="mb-3">
-                                <label for="password-register" className="form-label">Password</label>
+                                <label htmlFor="password-register" className="form-label">Password</label>
                                 <input value={password} onChange={e => setPassword(e.target.value)} type="password" className="form-control" id="password-register" placeholder="Masukkan password anda" />
                             </div>
                             <div className="mb-3">

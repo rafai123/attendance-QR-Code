@@ -1,13 +1,14 @@
+import Scanner from "qrcode-scanner-react"
 import { useState } from "react"
 import { Container } from "react-bootstrap"
 // import { QrReader } from "react-qr-reader"
 import { useNavigate, useParams } from "react-router-dom"
+import okSvg from "./../assets/ok.svg"
+import sakitSvg from "./../assets/sakit.svg"
 
 const ScanRoomPage = () => {
 
-    const [data, setData] = useState([])
     const [delayTime, setDelayTime] = useState(1000)
-    console.log(data)
     const navigate = useNavigate()
 
     const params = useParams()
@@ -18,50 +19,78 @@ const ScanRoomPage = () => {
     const [status, setStatus] = useState("")
     const [jamHadir, setJamHadir] = useState("")
 
-    const [scanQR, setScanQR] = useState(false)
+    const [statusHadir, setStatusHadir] = useState("")
 
-    // const handleData = (data) => {
-    //     // const newData = JSON.parse(data);
-    //     // setData(newData)
-        
-    // }
+    const [inputNim, setInputNim] = useState("")
 
-    // if (!scanQR) {
-    //     setTimeout(() => {
-    //         setScanQR(true)
-    //         console.log("scanQR", scanQR)
-    //     }, 1000)
-    // }
+    // qrcode-scanner-react
+    const [scanning, setScanning] = useState(false)
+    const [result, setResult] = useState("")
 
-    if (!delayTime) {
-        setTimeout(() => {
-            setDelayTime(1000)
-            console.log("delayTime", delayTime)
-        }, 1000)
+    const handlePushData = (res, kehadiran) => {
+        fetch(`https://64f2052d0e1e60602d24967d.mockapi.io/students?nim=${res}`)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result)
+
+            setNama(result[0].nama)
+            setNim(result[0].nim)
+            setKelas(result[0].kelas)
+            setStatus(kehadiran)
+            const tempName = result[0].nama
+            const tempNim = result[0].nim
+            const tempKelas = result[0].kelas
+            const date = new Date()
+            const jam = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+            setJamHadir(jam)
+
+            // set timeout for 1 second to push data to mock api
+            fetch(`https://64f4896b932537f4051a72e1.mockapi.io/rooms/${params.id}/students`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nama: tempName,
+                    nim: tempNim,
+                    kelas: tempKelas,
+                    status: kehadiran,
+                    jam: jam
+                })
+            })
+            .then((response) => response.json())
+            .then((result) => {
+                console.log(result)
+                // reload this page
+                // window.location.reload()
+                // navigate("/attendance-room-list/"+params.id)
+            })
+        })
     }
 
-    // const handlePushData = () => {
-    //     // send to mock api the data
-    //     const date = new Date()
-    //     const jam = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() 
-    //     fetch(`https://64f4896b932537f4051a72e1.mockapi.io/rooms/${params.id}/students`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({
-    //             nama: nama,
-    //             nim: nim,
-    //             kelas: kelas,
-    //             status: "Hadir",
-    //             jamHadir: jam
-    //         })
-    //     })
-    //     .then((response) => response.json())
-    //     .then((result) => {
-    //         console.log(result)
-    //     })
-    // }
+    const scanSuccess = (res) => {
+        setScanning(false)
+        setResult(res)
+
+        handlePushData(res, "Hadir")
+    }
+
+    const startScan = () => {
+        setResult("")
+        setScanning(true)
+    }
+
+    const handleSakit = () => {
+        setResult("Sakit")
+        setStatusHadir("Sakit")
+        handlePushData(inputNim, "Sakit")
+    }
+
+    const handleIzin = () => {
+        setResult("Izin")
+        setStatusHadir("Izin")
+        handlePushData(inputNim, "Izin")
+    }
 
     return (
         <>
@@ -72,106 +101,35 @@ const ScanRoomPage = () => {
                             <div className="row justify-content-md-center">
                                 <div className="col-md-6 d- py-3 justify-content-center align-items-center">
                                     <div className="container-qr">
-                                        {(scanQR) ? 
-                                            <QrReader className="rounded shadow my-4"
-                                                delay={delayTime}
-                                                onResult={(result, error) => {
-                                                if (!!result) {
-                                                    console.log(data)
-                                                    console.log("scanQR", scanQR)
 
-                                                    const resultData = result?.text;
-                                                    const resultToNumber = resultData
-                                                    console.log(resultToNumber)
-                                                    const link = "https://64f2052d0e1e60602d24967d.mockapi.io/students?nim=" + resultToNumber
-                                                    console.log(link)
-                                                    fetch(`https://64f2052d0e1e60602d24967d.mockapi.io/students?nim=${resultToNumber}`)
-                                                    .then((response) => response.json())
-                                                    .then((result) => {
-                                                        console.log(result)
-                                                        // console.log(result[0])
-                                                        // const newData = [{
-                                                        //     nama: result[0].nama,
-                                                        //     nim: result[0].nim,
-                                                        //     kelas: result[0].kelas
-                                                        // }]
-                                                        // console.log(newData)
-                                                        // setData(newData)
-                                                        // console.log(data)
-
-                                                        setNama(result[0].nama)
-                                                        setNim(result[0].nim)
-                                                        setKelas(result[0].kelas)
-                                                        setStatus("Hadir")
-                                                        const tempName = result[0].nama
-                                                        const tempNim = result[0].nim
-                                                        const tempKelas = result[0].kelas
-                                                        const date = new Date()
-                                                        const jam = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
-                                                        setJamHadir(jam)
-
-                                                        console.log(nama)
-                                                        console.log(nim)
-                                                        console.log(kelas)
-
-                                                        setDelayTime(false)
-                                                        setScanQR(false)
-
-
-                                                        // set timeout for 1 second to scan again
-                                                        // setTimeout(() => {
-                                                        //     setDelayTime(1000)
-                                                        //     setScanQR(true)
-                                                        //     console.log("delayTime", delayTime)
-                                                        //     console.log("scanQR", scanQR)
-                                                        // }, 1000)
-
-                                                        // set timeout for 1 second to push data to mock api
-                                                        setTimeout(async () => {
-                                                            // handlePushData()
-                                                            await fetch(`https://64f4896b932537f4051a72e1.mockapi.io/rooms/${params.id}/students`, {
-                                                                method: "POST",
-                                                                headers: {
-                                                                    "Content-Type": "application/json"
-                                                                },
-                                                                body: JSON.stringify({
-                                                                    nama: tempName,
-                                                                    nim: tempNim,
-                                                                    kelas: tempKelas,
-                                                                    status: "Hadir",
-                                                                    jam: jam
-                                                                })
-                                                            })
-                                                            .then((response) => response.json())
-                                                            .then((result) => {
-                                                                console.log(result)
-                                                                // reload this page
-                                                                // window.location.reload()
-                                                                navigate("/attendance-room-list/"+params.id)
-                                                            })
-                                                        }, 5000)
-
-                                                    })
-                                                    // setData(resultData)
-                                                    // const data = JSON.parse(result?.text);
-                                                    // const data = result?.text;
-                                                    // handleData(data)
-                                                    setDelayTime(false)
-                                                    setScanQR(false)
-                                                }
-    
-                                                if (!!error) {
-                                                    console.info(error);
-                                                }
-                                                }}
-                                                style={{ width: '100%' }}
-                                            />
-                                        :   
+                                        {scanning ? (
                                             <>
-                                                <div className="btn btn-purple" onClick={setScanQR(true)}>Scan</div>
+                                                <Scanner scanning={scanning} scanSuccess={scanSuccess} className="mt-4" />
+                                                <button onClick={() => setScanning(false)} className="btn btn-purple">Stop Scanning</button>
                                             </>
-                                        }
+                                        ) : (
+                                            <>
+                                                <h1 className="fw-bold mb-4">Selamat Datang</h1>
+                                                <button onClick={startScan} className="btn btn-purple">Start Scanning</button>
+                                            </>
+                                        )}
+                                        {/* <p>Result : {result}</p> */}
+                                        
                                     </div>
+                                    <Container className="mt-4">
+                                        <div className="row">
+                                            <div className="col-md">
+                                                <h4>Sakit/Izin?</h4>
+                                                <h5>Masukkan NIM Di bawah ini !</h5>
+                                                <div className="mb-3">
+                                                    {/* <label htmlFor="email-login" className="form-label">Email address</label> */}
+                                                    <input value={inputNim} onChange={e => setInputNim(e.target.value)} type="email" className="form-control mb-2" id="email-login" aria-describedby="emailHelp" placeholder="Masukkan email anda" />
+                                                    <span onClick={handleSakit} className="btn btn-purple px-5 me-2 ">Sakit</span>
+                                                    <span onClick={handleIzin} className="btn btn-outline-light px-5">Izin</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Container>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="container my-4 rounded">
@@ -281,8 +239,45 @@ const ScanRoomPage = () => {
                                         </div> */}
                                         <div className="row bg-purple-dark">
                                             <div className="col-12 ">
-                                                <div className="container-status-qr d-flex justify-content-center align-items-center">
-                                                    <h2>Berhasil check in</h2> 
+                                                <div className="container-status-qr d-flex justify-content-center align-items-center flex-column ">
+                                                    {result ? (
+                                                        <>
+                                                            {(statusHadir === "Sakit") ? (
+                                                                <>
+                                                                    <div>
+                                                                        <img className="mb-2" src={sakitSvg} alt="sakit" /> 
+                                                                    </div>
+                                                                    <p>
+                                                                        <h2>{nama} Tercatat Sakit</h2>
+                                                                    </p>
+                                                                </>
+                                                            ) :
+                                                            (statusHadir === "Izin") ? (
+                                                                <>
+                                                                    <div>
+                                                                        <img className="mb-2" src={sakitSvg} alt="izin" /> 
+                                                                    </div>
+                                                                    <p>
+                                                                        <h2>{nama} Tercatat Izin</h2>
+                                                                    </p>
+                                                                </>
+                                                            ) : (
+                                                                <>
+                                                                    <div>
+                                                                        <img className="mb-2" src={okSvg} alt="OK" /> 
+                                                                    </div>
+                                                                    <p>
+                                                                        <h2>Selamat Datang {nama}</h2>
+                                                                    </p>
+                                                                </>
+                                                            )}
+                                                            
+                                                        </>
+                                                    ) : (
+                                                        <>
+                                                            <h2>Silahkan Scan Untuk Checkin</h2>
+                                                        </>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
