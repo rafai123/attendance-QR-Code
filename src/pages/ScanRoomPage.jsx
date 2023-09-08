@@ -27,6 +27,19 @@ const ScanRoomPage = () => {
     const [scanning, setScanning] = useState(false)
     const [result, setResult] = useState("")
 
+    const fetchData = async () => {
+        await fetch(`https://64f4896b932537f4051a72e1.mockapi.io/rooms/${params.id}/students`)
+        .then((response) => response.json())
+        .then((res) => {
+            console.log(res)
+            setStudents(res)
+        })
+    }
+    
+    useEffect(() => {
+        fetchData()
+    }, [result, params.id])
+
     const handlePushData = (res, kehadiran) => {
         fetch(`https://64f2052d0e1e60602d24967d.mockapi.io/students?nim=${res}`)
         .then((response) => response.json())
@@ -65,6 +78,7 @@ const ScanRoomPage = () => {
                 // reload this page
                 // window.location.reload()
                 // navigate("/attendance-room-list/"+params.id)
+                fetchData()
             })
         })
     }
@@ -93,14 +107,7 @@ const ScanRoomPage = () => {
         handlePushData(inputNim, "Izin")
     }
 
-    useEffect(() => {
-        fetch(`https://64f4896b932537f4051a72e1.mockapi.io/rooms/${params.id}/students`)
-        .then((response) => response.json())
-        .then((result) => {
-            console.log(result)
-            setStudents(result)
-        })
-    }, [result])
+    
 
     return (
         <>
