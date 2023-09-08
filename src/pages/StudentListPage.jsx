@@ -35,7 +35,7 @@ const StudentListPage =() => {
                 <div className="row text-white mt-3">
                     <div className="col">
 
-                        <table class="table table-dark table-striped shadow rounded">
+                        <table className="table table-dark table-striped shadow rounded">
                             <thead className="table-purple" style={{backgroundColor: "red"}}>
                                 <tr className="table-purple">
                                 <th scope="col">NIM</th>

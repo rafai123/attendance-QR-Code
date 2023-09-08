@@ -7,6 +7,7 @@ const QRGeneratorPage = () => {
     const param = useParams()
 
     const [student, setStudent] = useState({})
+    const [qr, setQr] = useState("")
 
     useEffect(() => {
         fetch(`https://64f2052d0e1e60602d24967d.mockapi.io/students/${param.id}`)
@@ -17,6 +18,7 @@ const QRGeneratorPage = () => {
                     nim: result.nim,
                     kelas: result.kelas
                 })
+                setQr(result.nim)
                 console.log(student)
             })
     }, [param.id])
@@ -33,7 +35,7 @@ const QRGeneratorPage = () => {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-md-6 d-flex justify-content-center align-items-center ">
-                                        <QRCode  value={JSON.stringify(student)} className="p-4 mx-auto" />
+                                        <QRCode  value={qr} className="p-4 mx-auto" />
                                         {/* <input value={JSON.stringify(student)} onChange={e => setTest(e.target.value)} type="text" className="form-control" placeholder="test" /> */}
                                     </div>
                                     <div className="col-md-6">

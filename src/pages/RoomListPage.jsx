@@ -4,9 +4,9 @@ import { Link, useNavigate } from "react-router-dom"
 
 const RoomListPage = () => {
 
-    const isLoggedIn = localStorage.getItem("login")
-
-    if (!isLoggedIn) {
+    const dataLogin = JSON.parse(localStorage.getItem("login")); // // true or false
+    
+    if (!dataLogin) {
         const navigate = useNavigate()
         navigate("/not-login")
     }
@@ -22,8 +22,8 @@ const RoomListPage = () => {
             })
     }, [])
 
-    const dataLogin = JSON.parse(isLoggedIn)
-    console.log(dataLogin.nama)
+
+    // console.log(dataLogin.nama)
 
     return (
         <>

@@ -51,28 +51,28 @@ const AddRoomPage = () => {
               <h1 className="fw-bold text-center">Buat Ruangan </h1>
               <p className="lead text-center">Silahkan masukkan data mahasiswa sesuai form di bawah ini</p>
               <form onSubmit={handleSubmit}>
-                <div class="mb-3">
-                  <label for="name-register" class="form-label">
+                <div className="mb-3">
+                  <label for="name-register" className="form-label">
                     Nama Ruangan
                   </label>
-                  <input value={name} onChange={(e) => setName(e.target.value)} type="text" class="form-control" id="name-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan nama anda" />
+                  <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="name-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan nama anda" />
                 </div>
-                <div class="mb-3">
-                  <label for="email-register" class="form-label">
+                <div className="mb-3">
+                  <label for="email-register" className="form-label">
                     Kelas
                   </label>
-                  <input value={kelas} onChange={(e) => setKelas(e.target.value)} type="text" class="form-control" id="email-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan Kelas" />
+                  <input value={kelas} onChange={(e) => setKelas(e.target.value)} type="text" className="form-control" id="email-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan Kelas" />
                 </div>
-                <div class="mb-3">
-                  <label for="password-register" class="form-label">
+                <div className="mb-3">
+                  <label for="password-register" className="form-label">
                     Jam Masuk (Format 24 Jam. Masukkan angkanya saja)
                   </label>
-                  <input value={jamMasuk} onChange={(e) => setJamMasuk(e.target.value)} type="time" class="form-control" id="password-register" placeholder="Contoh : 12" />
+                  <input value={jamMasuk} onChange={(e) => setJamMasuk(e.target.value)} type="time" className="form-control" id="password-register" placeholder="Contoh : 12" />
                 </div>
                 <div className="container mt-5">
                   <div className="row justify-content-center">
                     <div className="col-2 d-flex justify-content-center">
-                      <button type="submit" class="btn btn-purple px-5 mx-auto">
+                      <button type="submit" className="btn btn-purple px-5 mx-auto">
                         Tambah
                       </button>
                     </div>

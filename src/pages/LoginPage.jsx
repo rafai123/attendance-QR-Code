@@ -35,25 +35,25 @@ const LoginPage = () => {
         <>
             <Container>
                 <div className="row text-white">
-                    <div className="col-md-6 d-flex flex-column  justify-content-center  " style={{minHeight: "80vh"}}>
+                    <div className="col-lg-6 d-flex flex-column  justify-content-center  " style={{minHeight: "80vh"}}>
                         <h1>Selamat Datang Di Absensi STIKOM</h1>
                         <p className="lead">Silahkan login dengan akun anda untuk melanjutkan!</p>
                         <form onSubmit={handleSubmitLogin}>
-                            <div class="mb-3">
-                                <label for="email-login" class="form-label">Email address</label>
-                                <input value={email} onChange={e => setEmail(e.target.value)} type="email" class="form-control" id="email-login" aria-describedby="emailHelp" placeholder="Masukkan email anda" />
+                            <div className="mb-3">
+                                <label htmlFor="email-login" className="form-label">Email address</label>
+                                <input value={email} onChange={e => setEmail(e.target.value)} type="email" className="form-control" id="email-login" aria-describedby="emailHelp" placeholder="Masukkan email anda" />
                             </div>
-                            <div class="mb-3">
-                                <label for="password-login" class="form-label">Password</label>
-                                <input value={password} onChange={e => setPassword(e.target.value)} type="password" class="form-control" id="password-login" placeholder="Masukkan password anda" />
+                            <div className="mb-3">
+                                <label htmlFor="password-login" className="form-label">Password</label>
+                                <input value={password} onChange={e => setPassword(e.target.value)} type="password" className="form-control" id="password-login" placeholder="Masukkan password anda" />
                             </div>
-                            <div class="mb-3">
+                            <div className="mb-3">
                                 <p>Belum punya akun? silahkan <Link to="/register" className="fw-bold text-purple-500">Register </Link> dulu yuk! </p>
                             </div>
-                            <button type="submit" class="btn btn-purple px-5 ">Login</button>
+                            <button type="submit" className="btn btn-purple px-5 ">Login</button>
                         </form>
                     </div>
-                    <div className="col-md-6 d-flex justify-content-end align-items-center">
+                    <div className="col-lg-6 d-flex justify-content-end align-items-center">
                         <img src={loginImage} alt="Landing Page Image" />
                     </div>
                 </div>
