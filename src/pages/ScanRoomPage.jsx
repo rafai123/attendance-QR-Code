@@ -1,5 +1,5 @@
 import Scanner from "qrcode-scanner-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Container } from "react-bootstrap"
 // import { QrReader } from "react-qr-reader"
 import { useNavigate, useParams } from "react-router-dom"
@@ -8,9 +8,9 @@ import sakitSvg from "./../assets/sakit.svg"
 
 const ScanRoomPage = () => {
 
-    const [delayTime, setDelayTime] = useState(1000)
     const navigate = useNavigate()
 
+    const [students, setStudents] = useState([])
     const params = useParams()
 
     const [nama, setNama] = useState("")
@@ -55,7 +55,8 @@ const ScanRoomPage = () => {
                     nim: tempNim,
                     kelas: tempKelas,
                     status: kehadiran,
-                    jam: jam
+                    jam: jam,
+                    tanggal: date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
                 })
             })
             .then((response) => response.json())
@@ -92,9 +93,18 @@ const ScanRoomPage = () => {
         handlePushData(inputNim, "Izin")
     }
 
+    useEffect(() => {
+        fetch(`https://64f4896b932537f4051a72e1.mockapi.io/rooms/${params.id}/students`)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result)
+            setStudents(result)
+        })
+    }, [result])
+
     return (
         <>
-            <Container className="text-white">
+            <Container className="text-white mb">
                 <div className="row layer">
                     <div className="col-12">
                         <div className="container">
@@ -115,7 +125,6 @@ const ScanRoomPage = () => {
                                         )}
                                         {/* <p>Result : {result}</p> */}
                                         
-                                    </div>
                                     <Container className="mt-4">
                                         <div className="row">
                                             <div className="col-md">
@@ -130,6 +139,7 @@ const ScanRoomPage = () => {
                                             </div>
                                         </div>
                                     </Container>
+                                    </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="container my-4 rounded">
@@ -288,6 +298,48 @@ const ScanRoomPage = () => {
                     </div>
                 </div>
             </Container>
+
+            <>
+            <Container className="mt-5">
+                <div className="row text-white mt-3 ">
+                    <div className="col-12">
+                        <div className="d-flex justify-content-between flex-wrap">
+                            <h3><span className="border-heading"></span> Daftar Mahasiswa</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className="row text-white mt-3">
+                    <div className="col">
+
+                        <table className="table table-dark table-striped shadow rounded">
+                            <thead className="table-purple" style={{backgroundColor: "red"}}>
+                                <tr className="table-purple">
+                                <th scope="col">NIM</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Keterangan</th>
+                                <th scope="col">Jam</th>
+                                </tr>
+                            </thead>
+                            <tbody className="table-purple">
+                                {students.map((student) => {
+                                    return (
+                                        <tr key={student.id}>
+                                            <th scope="row">{student.nim}</th>
+                                            <td>{student.nama}</td>
+                                            <td>{student?.tanggal}</td>
+                                            <td>{student.status}</td>
+                                            <td>{student.jam}</td>
+                                        </tr>
+                                    )
+                                })
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </Container>
+        </>
         </>
     )
 }
