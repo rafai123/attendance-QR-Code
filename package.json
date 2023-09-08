@@ -14,11 +14,11 @@
     "bootstrap": "^5.3.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
+    "qrcode-scanner-react": "^0.2.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
     "react-qr-code": "^2.0.12",
-    "react-qr-reader": "^3.0.0",
     "react-router-dom": "^6.15.0",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.7.27"

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Container } from "react-bootstrap"
-// import { QrReader } from "react-qr-reader"
+import { QrReader } from "react-qr-reader"
 import { useNavigate, useParams } from "react-router-dom"
 
 const ScanRoomPage = () => {

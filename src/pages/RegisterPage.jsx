@@ -63,22 +63,22 @@ const RegisterPage = () => {
                         <h1>Selamat Datang Di Absensi STIKOM</h1>
                         <p className="lead">Kamu belum daftar? Daftar yuk!</p>
                         <form onSubmit={handleSubmitRegister}>
-                            <div class="mb-3">
-                                <label for="name-register" class="form-label">Name</label>
-                                <input value={name} onChange={e => setName(e.target.value)} type="text" class="form-control" id="name-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan nama anda"  />
+                            <div className="mb-3">
+                                <label for="name-register" className="form-label">Name</label>
+                                <input value={name} onChange={e => setName(e.target.value)} type="text" className="form-control" id="name-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan nama anda"  />
                             </div>
-                            <div class="mb-3">
-                                <label for="email-register" class="form-label">Email address</label>
-                                <input value={email} onChange={e => setEmail(e.target.value)} type="email" class="form-control" id="email-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan email anda" />
+                            <div className="mb-3">
+                                <label for="email-register" className="form-label">Email address</label>
+                                <input value={email} onChange={e => setEmail(e.target.value)} type="email" className="form-control" id="email-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan email anda" />
                             </div>
-                            <div class="mb-3">
-                                <label for="password-register" class="form-label">Password</label>
-                                <input value={password} onChange={e => setPassword(e.target.value)} type="password" class="form-control" id="password-register" placeholder="Masukkan password anda" />
+                            <div className="mb-3">
+                                <label for="password-register" className="form-label">Password</label>
+                                <input value={password} onChange={e => setPassword(e.target.value)} type="password" className="form-control" id="password-register" placeholder="Masukkan password anda" />
                             </div>
-                            <div class="mb-3">
+                            <div className="mb-3">
                                 <p>Sudah punya akun? silahkan <Link to="/login" className="fw-bold text-purple-500">Login </Link> yuk! </p>
                             </div>
-                            <button type="submit" class="btn btn-purple px-5 ">Daftar</button>
+                            <button type="submit" className="btn btn-purple px-5 ">Daftar</button>
                         </form>
                     </div>
                     <div className="col-md-6 d-flex justify-content-end align-items-center">
