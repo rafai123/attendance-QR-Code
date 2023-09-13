@@ -9,6 +9,9 @@ const QRGeneratorPage = () => {
     const [student, setStudent] = useState({})
     const [qr, setQr] = useState("")
 
+    const date = new Date()
+    const thisDay = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
+
     useEffect(() => {
         fetch(`https://64f2052d0e1e60602d24967d.mockapi.io/students/${param.id}`)
             .then((response) => response.json())
@@ -24,6 +27,25 @@ const QRGeneratorPage = () => {
     }, [param.id])
 
     {console.log(student)}
+    
+    const handleDownload = () => {
+        const svg = document.getElementById("qr")
+        const svgData = new XMLSerializer().serializeToString(svg)
+        const canvas = document.createElement("canvas")
+        const ctx = canvas.getContext("2d")
+        const img = new Image()
+        img.onload = () => {
+            canvas.width = img.width
+            canvas.height = img.height
+            ctx.drawImage(img, 0, 0)
+            const pngFile = canvas.toDataURL("image/png")
+            const downloadLink = document.createElement("a")
+            downloadLink.download = `${student.nama}_${student.nim}_${thisDay}.png`
+            downloadLink.href = pngFile
+            downloadLink.click()
+        }
+        img.src = "data:image/svg+xml;base64," + btoa(svgData)
+    }
 
     const [test, setTest] = useState("")
     return (
@@ -35,7 +57,7 @@ const QRGeneratorPage = () => {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-md-6 d-flex justify-content-center align-items-center ">
-                                        <QRCode  value={qr} className="p-4 mx-auto" />
+                                        <QRCode  value={qr} className="p-4 mx-auto" id="qr"/>
                                         {/* <input value={JSON.stringify(student)} onChange={e => setTest(e.target.value)} type="text" className="form-control" placeholder="test" /> */}
                                     </div>
                                     <div className="col-md-6">
@@ -61,7 +83,7 @@ const QRGeneratorPage = () => {
                                                             </tr>
                                                         </table>
                                                     </div>
-                                                    <div className="btn btn-purple">Download QR Code</div>
+                                                    <div onClick={handleDownload} className="btn btn-purple">Download QR Code</div>
                                                 </div>
                                             </div>
                                         </div>
