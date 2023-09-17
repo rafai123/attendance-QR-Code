@@ -72,7 +72,7 @@ const RoomListPage = () => {
                         <Container className="text-white">
                             <div className="row">
                                 <div className="col-md-12 p-3">
-                                    <h5 className="fw-bold">{item.name_room}</h5>
+                                    <h5 className="fw-bold">{item.fullmatakuliah}</h5>
                                 </div>
                             </div>
                             <div className="row">

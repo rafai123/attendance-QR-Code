@@ -10,24 +10,43 @@ const AddRoomPage = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handlePushData = async () => {
+    let success = false
+    for (let i = 1 ; i <= 14 ; i++) {
+      await fetch("https://64f4896b932537f4051a72e1.mockapi.io/rooms", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          matakuliah: name,
+          pertemuan: i,
+          admin_name: JSON.parse(localStorage.getItem("login")).nama,
+          kelas: kelas,
+          jam_masuk: jamMasuk,
+          fullmatakuliah: `${name} Pertemuan ${i}`,
+          }),
+        })
+        .then((response) => response.json())
+        .then( async (result) => {
+          // console.log("Success:", result);
+          success = true
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          success = false
+        });
+      }
+      return success
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch("https://64f4896b932537f4051a72e1.mockapi.io/rooms", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name_room: name,
-        kelas: kelas,
-        jam_masuk: jamMasuk,
-        admin_name: JSON.parse(localStorage.getItem("login")).nama,
-      }),
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        // console.log("Success:", result);
-        new Swal(
+
+    const success = await handlePushData()
+
+        if (success) {
+          new Swal(
             "Success!",
             "Room Matkul Berhasil dibuat",
             "success",
@@ -35,11 +54,18 @@ const AddRoomPage = () => {
                 timer: 3000,
             },
             navigate("/attendance-room-list")
-        );
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+          )
+        } else {
+          new Swal(
+            "Error!",
+            "Room Matkul Gagal dibuat",
+            "error",
+            {
+                timer: 3000,
+            },
+            // navigate("/attendance-room-list")
+          )
+        }
   };
 
   return (
@@ -53,7 +79,7 @@ const AddRoomPage = () => {
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label for="name-register" className="form-label">
-                    Nama Ruangan
+                    Nama Matkul
                   </label>
                   <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="name-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan nama anda" />
                 </div>
