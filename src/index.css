@@ -80,3 +80,10 @@
   height: 200px;
   /* width: 70%; */
 }
+
+
+@media (max-width: 992px) { 
+  .hidden-lg {
+    display: none !important;
+  }
+}

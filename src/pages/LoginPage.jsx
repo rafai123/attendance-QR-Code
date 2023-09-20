@@ -54,7 +54,7 @@ const LoginPage = () => {
                         </form>
                     </div>
                     <div className="col-lg-6 d-flex justify-content-end align-items-center">
-                        <img src={loginImage} alt="Landing Page Image" />
+                        <img src={loginImage} alt="Landing Page Image" className="hidden-lg" />
                     </div>
                 </div>
             </Container>

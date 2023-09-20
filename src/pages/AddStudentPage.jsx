@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddStudentPage = () => {
   const [name, setName] = useState("");
   const [nim, setNim] = useState("");
   const [kelas, setKelas] = useState("");
+
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,9 +26,27 @@ const AddStudentPage = () => {
       .then((response) => response.json())
       .then((result) => {
         console.log("Success:", result);
+        new Swal(
+          "Success!",
+          "Data Berhasil diTambah",
+          "success",
+          {
+              timer: 3000,
+          },
+          navigate("/student-list")
+        )
       })
       .catch((error) => {
         console.error("Error:", error);
+        new Swal(
+          "Error!",
+          "Room Matkul Gagal dibuat",
+          "error",
+          {
+              timer: 3000,
+          },
+          // navigate("/attendance-room-list")
+        )
       });
   };
 
