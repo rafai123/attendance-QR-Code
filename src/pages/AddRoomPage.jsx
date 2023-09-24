@@ -7,6 +7,7 @@ const AddRoomPage = () => {
   const [name, setName] = useState("");
   const [kelas, setKelas] = useState("");
   const [jamMasuk, setJamMasuk] = useState("");
+  const [dosen, setDosen] = useState("");
 
   const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ const AddRoomPage = () => {
           matakuliah: name,
           pertemuan: i,
           admin_name: JSON.parse(localStorage.getItem("login")).nama,
+          dosen: dosen,
           kelas: kelas,
           jam_masuk: jamMasuk,
           fullmatakuliah: `${name} Pertemuan ${i}`,
@@ -82,6 +84,12 @@ const AddRoomPage = () => {
                     Nama Matkul
                   </label>
                   <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="name-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan nama anda" />
+                </div>
+                <div className="mb-3">
+                  <label for="name-register" className="form-label">
+                    Nama Dosen Pengampu
+                  </label>
+                  <input value={dosen} onChange={(e) => setDosen(e.target.value)} type="text" className="form-control" id="name-register" aria-describedby="emailHelp" placeholder="Silahkan masukkan nama Dosen Pengampu" />
                 </div>
                 <div className="mb-3">
                   <label for="email-register" className="form-label">

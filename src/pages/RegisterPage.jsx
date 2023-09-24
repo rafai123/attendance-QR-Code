@@ -59,7 +59,7 @@ const RegisterPage = () => {
         <>
             <Container>
                 <div className="row text-white">
-                    <div className="col-md-6 d-flex flex-column  justify-content-center  " style={{minHeight: "80vh"}}>
+                    <div className="col-lg-6 d-flex flex-column  justify-content-center  " style={{minHeight: "80vh"}}>
                         <h1>Selamat Datang Di Absensi STIKOM</h1>
                         <p className="lead">Kamu belum daftar? Daftar yuk!</p>
                         <form onSubmit={handleSubmitRegister}>
@@ -81,8 +81,8 @@ const RegisterPage = () => {
                             <button type="submit" className="btn btn-purple px-5 ">Daftar</button>
                         </form>
                     </div>
-                    <div className="col-md-6 d-flex justify-content-end align-items-center">
-                        <img src={loginImage} alt="Landing Page Image" />
+                    <div className="col-lg-6 d-flex justify-content-end align-items-center">
+                        <img src={loginImage} alt="Landing Page Image" className="hidden-lg" />
                     </div>
                 </div>
             </Container>
