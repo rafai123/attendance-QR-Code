@@ -5,9 +5,9 @@ import { Link, useNavigate } from "react-router-dom"
 const RoomListPage = () => {
 
     const dataLogin = JSON.parse(localStorage.getItem("login")); // // true or false
+    const navigate = useNavigate()
     
     if (!dataLogin) {
-        const navigate = useNavigate()
         navigate("/not-login")
     }
 
@@ -39,15 +39,15 @@ const RoomListPage = () => {
                             <div className="row">
                                 <div className="col-md mt-2">
                                     <h4 className="lead fw-bold">Nama :</h4>
-                                    <p className="lead">{dataLogin.nama}</p>
+                                    <p className="lead">{dataLogin?.nama}</p>
                                 </div>
                                 <div className="col-md mt-2">
                                     <h4 className="fw-bold lead ">Alamat Email :</h4>
-                                    <p className="lead">{dataLogin.email}</p>
+                                    <p className="lead">{dataLogin?.email}</p>
                                 </div>
                                 <div className="col-md mt-2">
                                     <h4 className="lead fw-bold">Id Admin :</h4>
-                                    <p className="lead">{dataLogin.id}</p>
+                                    <p className="lead">{dataLogin?.id}</p>
                                 </div>
                             </div>
                         </div>
