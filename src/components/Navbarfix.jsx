@@ -13,6 +13,10 @@ const NavbarFix = () => {
 
   const navigate = useNavigate();
 
+  const handleHome = () => {
+    navigate("/");
+  }
+
   const handleLogout = () => {
     localStorage.removeItem("login");
     window.location.reload();
@@ -84,7 +88,7 @@ const NavbarFix = () => {
   return (
     <Navbar expand="lg" className="navbar-dark">
       <Container>
-        <Navbar.Brand href="#">Absensi STIKOM</Navbar.Brand>
+        <Navbar.Brand onClick={handleHome} className="pointer">Absensi STIKOM</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto gap-2 text-center"  >
